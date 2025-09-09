@@ -1,0 +1,86 @@
+# Dolibarr language file - Source file is en_US - internalhts
+CHARSET = UTF-8
+
+# Module
+ModuleInternalHTSName = InternalHTS
+ModuleInternalHTSDesc = InternalHTS module for managing internal HTS codes and commercial invoices
+
+# Admin page
+InternalHTSSetup = InternalHTS Setup
+Settings = Settings
+InternalHTSSetupPage = InternalHTS setup page
+HTSImport = HTS Import
+
+# About page
+About = About
+InternalHTSAbout = About InternalHTS
+InternalHTSAboutPage = InternalHTS about page
+
+# List page
+List = List
+InternalHTSList = Internal Invoices
+NewInternalHTS = New Internal Invoice
+ConfirmDeleteInternalHTS = Are you sure you want to delete this Internal Invoice?
+
+# Card page
+InternalHTSCard = Internal Invoice Card
+CreateInternalHTS = Create Internal Invoice
+EditInternalHTS = Edit Internal Invoice
+
+# Common
+InternalHTS = Internal Invoice
+InternalHTSs = Internal Invoices
+InternalHTSLines = Invoice Lines
+InternalHTSLine = Invoice Line
+HTSCode = HTS Code
+HTSCodes = HTS Codes
+CountryOfOrigin = Country of Origin
+CustomsValue = Customs Value
+CustomsUnitValue = Customs Unit Value
+TotalCustomsValue = Total Customs Value
+SKU = SKU
+Incoterm = Incoterm
+ValueSource = Value Source
+ApportionmentMode = Apportionment Mode
+ShipFromCountry = Ship From Country
+ShipToCountry = Ship To Country
+ExchangeRate = Exchange Rate
+
+# Status
+StatusDraft = Draft
+StatusValidated = Validated
+Draft = Draft
+Validated = Validated
+
+# Buttons
+Validate = Validate
+SetToDraft = Set to Draft
+GeneratePDF = Generate PDF
+
+# Messages
+InternalHTSCreated = Internal Invoice created
+InternalHTSModified = Internal Invoice modified
+InternalHTSDeleted = Internal Invoice deleted
+InternalHTSValidated = Internal Invoice validated
+InternalHTSUnvalidated = Internal Invoice set to draft
+
+# Errors
+ErrorInternalHTSNotFound = Internal Invoice not found
+ErrorInvalidHTSCode = Invalid HTS code
+ErrorInvalidCountryCode = Invalid country code
+
+# Rights
+Permission500001 = Read InternalHTS documents
+Permission500002 = Create/Update InternalHTS documents  
+Permission500003 = Delete InternalHTS documents
+
+# HTS Import
+HTSImportTitle = HTS Import
+CSVFile = CSV File
+DryRun = Dry Run
+Commit = Commit
+ImportResults = Import Results
+SuccessfulImports = Successful Imports
+ImportErrors = Import Errors
+HTSCodeImported = HTS codes imported
+ExpectedFormat = Expected CSV format: country, code, description
