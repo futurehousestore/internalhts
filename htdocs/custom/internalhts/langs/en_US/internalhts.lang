@@ -84,3 +84,13 @@ SuccessfulImports = Successful Imports
 ImportErrors = Import Errors
 HTSCodeImported = HTS codes imported
 ExpectedFormat = Expected CSV format: country, code, description
+TestImportWithoutSaving = Test import without saving to database
+OnlyFirst50Shown = Only first 50 records shown
+NoHTSCodesFound = No HTS codes found
+ExistingHTSCodes = Existing HTS Codes
+
+# Configuration
+DefaultIncoterm = Default Incoterm
+DefaultValueSource = Default Value Source
+DefaultApportionmentMode = Default Apportionment Mode
+ModuleNumberingModule = Numbering Module
