@@ -1,0 +1,163 @@
+# Copyright (C) 2024 FutureHouse Store
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+#
+# Generic
+#
+
+# Module label 'ModuleInternalHTSName'
+ModuleInternalHTSName = InternalHTS
+# Module description 'ModuleInternalHTSDesc'
+ModuleInternalHTSDesc = InternalHTS module for generating internal invoices with HS/HTS codes, COO, customs values, weights, and packages
+
+#
+# Admin page
+#
+InternalHTSSetup = InternalHTS setup
+Settings = Settings
+InternalHTSSetupPage = InternalHTS setup page
+INTERNALHTS_MYPARAM1 = My param 1
+INTERNALHTS_MYPARAM1Tooltip = My param 1 tooltip
+INTERNALHTS_MYPARAM2=My param 2
+INTERNALHTS_MYPARAM2Tooltip=My param 2 tooltip
+
+#
+# About page
+#
+About = About
+InternalHTSAbout = About InternalHTS
+InternalHTSAboutPage = InternalHTS about page
+
+#
+# Page list
+#
+InternalHTSArea = InternalHTS area
+ListOfInternalHTSInvoices = List of internal HTS invoices
+HTSMapping = HTS Product Mapping
+ListOfHTSMappings = List of HTS product mappings
+
+NewInternalHTSInvoice = New internal HTS invoice
+NewHTSMapping = New HTS mapping
+
+MyPageName = My page name
+
+#
+# Page card
+#
+CreateInternalHTSInvoice = Create internal HTS invoice
+ModifyInternalHTSInvoice = Modify internal HTS invoice
+NewObject = New %s
+ModifyObject = Modify %s
+DeleteObject = Delete %s
+InternalHTSInvoiceCard = Internal HTS invoice card
+CopyOf = Copy of %s
+
+#
+# Fields
+#
+Ref = Reference
+RefExt = External reference
+ThirdParty = Third party
+Shipment = Shipment
+InvoiceType = Invoice type
+DateInvoice = Invoice date
+DateDue = Due date
+TotalHT = Total HT
+TotalTTC = Total TTC
+TotalWeightKg = Total weight (kg)
+TotalPackages = Total packages
+NotePrivate = Private note
+NotePublic = Public note
+Product = Product
+HTSCode = HTS code
+HTSCodeValue = HTS code value
+ProductType = Product type
+Description = Description
+CountryOrigin = Country of origin
+Qty = Quantity
+UnitPrice = Unit price
+CustomsValue = Customs value
+WeightKg = Weight (kg)
+Packages = Packages
+Active = Active
+UserCreation = Created by
+UserModif = Modified by
+DateCreation = Creation date
+DateModification = Modification date
+
+#
+# Status
+#
+InternalHTSInvoiceStatusShort0 = Draft
+InternalHTSInvoiceStatusShort1 = Validated
+InternalHTSInvoiceStatusShort2 = Paid
+InternalHTSInvoiceStatusShort9 = Abandoned
+InternalHTSInvoiceStatus0 = Draft (needs to be validated)
+InternalHTSInvoiceStatus1 = Validated (ready for payment)
+InternalHTSInvoiceStatus2 = Paid
+InternalHTSInvoiceStatus9 = Abandoned
+
+#
+# Menus
+#
+InternalHTSInvoice = Internal HTS invoices
+
+#
+# Countries (ISO 2-letter codes)
+#
+CountryUS = United States
+CountryCA = Canada
+CountryMX = Mexico
+CountryCN = China
+CountryDE = Germany
+CountryFR = France
+CountryGB = United Kingdom
+CountryIT = Italy
+CountryJP = Japan
+CountryKR = South Korea
+CountryIN = India
+
+#
+# HTS Codes
+#
+HTSCodeImport = Import HTS codes
+HTSCodeImportHelp = Upload a CSV file with columns: Code, Label, Description, Duty Rate
+ImportHTSCodesFile = HTS codes file
+HTSCodesImported = %d HTS codes imported successfully
+
+#
+# Export formats
+#
+ExportCommercialInvoice = Export commercial invoice
+ExportPackingList = Export packing list
+ExportBrokerCSV = Export broker CSV
+ExportBrokerJSON = Export broker JSON
+
+#
+# Actions
+#
+ValidateInvoice = Validate invoice
+SetToDraft = Set to draft
+CancelInvoice = Cancel invoice
+ReopenInvoice = Reopen invoice
+GenerateFromShipment = Generate from shipment
+
+#
+# Errors
+#
+ErrorHTSCodeNotFound = HTS code not found
+ErrorProductNotFound = Product not found
+ErrorInvalidFile = Invalid file format
+ErrorImportFailed = Import failed
