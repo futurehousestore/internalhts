@@ -957,6 +957,169 @@ class InternalHTS extends CommonObject
     }
 
     /**
+     * Print object lines for PDF or other output
+     *
+     * @param   TCPDF      $pdf               Object PDF
+     * @param   string     $action            Current action
+     * @param   Societe    $mysoc             Current company
+     * @param   Societe    $soc               Third party
+     * @param   int        $lineid            Line ID to edit
+     * @param   int        $outputlang        Output language
+     * @return  void
+     */
+    public function printObjectLines($action, $mysoc, $soc, $lineid, $outputlang)
+    {
+        global $conf, $langs, $form;
+
+        $num = count($this->lines);
+
+        for ($i = 0; $i < $num; $i++) {
+            // Show product/service info
+            print '<tr class="oddeven">';
+            
+            // Description
+            print '<td>';
+            if (!empty($this->lines[$i]->fk_product) && $this->lines[$i]->fk_product > 0) {
+                print '<a href="'.DOL_URL_ROOT.'/product/card.php?id='.$this->lines[$i]->fk_product.'">';
+                print img_object($langs->trans('ShowProduct'), 'product').' ';
+                print '</a>';
+            }
+            print nl2br($this->lines[$i]->description);
+            print '</td>';
+            
+            // SKU
+            print '<td>'.$this->lines[$i]->sku.'</td>';
+            
+            // HTS Code
+            print '<td>';
+            if ($this->lines[$i]->fk_hts > 0) {
+                require_once DOL_DOCUMENT_ROOT.'/custom/internalhts/class/hts.class.php';
+                $hts = new HTS($this->db);
+                if ($hts->fetch($this->lines[$i]->fk_hts) > 0) {
+                    print '<span class="internalhts-hts-code">'.$hts->code.'</span>';
+                }
+            }
+            print '</td>';
+            
+            // Country of Origin
+            print '<td>'.$this->lines[$i]->country_of_origin.'</td>';
+            
+            // Quantity
+            print '<td class="right">'.$this->lines[$i]->qty.'</td>';
+            
+            // Unit Price
+            print '<td class="right">'.price($this->lines[$i]->unit_price).'</td>';
+            
+            // Customs Unit Value
+            print '<td class="right internalhts-customs-value">'.price($this->lines[$i]->customs_unit_value).'</td>';
+            
+            // Total HT
+            print '<td class="right internalhts-line-total">'.price($this->lines[$i]->total_ht).'</td>';
+            
+            // Action buttons
+            print '<td class="right">';
+            if ($action != 'editline' && $this->status == self::STATUS_DRAFT) {
+                print '<a href="'.$_SERVER["PHP_SELF"].'?id='.$this->id.'&action=editline&lineid='.$this->lines[$i]->id.'">';
+                print img_edit();
+                print '</a>';
+                print ' ';
+                print '<a href="'.$_SERVER["PHP_SELF"].'?id='.$this->id.'&action=deleteline&lineid='.$this->lines[$i]->id.'">';
+                print img_delete();
+                print '</a>';
+            }
+            print '</td>';
+            
+            print '</tr>';
+        }
+    }
+
+    /**
+     * Show add line form
+     *
+     * @param   int     $dateSelector       1=Show also date range selector
+     * @param   Societe $seller             Selling company
+     * @param   Societe $buyer              Buying company
+     * @return  void
+     */
+    public function formAddObjectLine($dateSelector, $seller, $buyer)
+    {
+        global $conf, $user, $langs, $form;
+
+        if ($this->status != self::STATUS_DRAFT) {
+            return;
+        }
+
+        print '<tr class="liste_titre nodrag nodrop">';
+        print '<td>'.$langs->trans('Description').'</td>';
+        print '<td>'.$langs->trans('SKU').'</td>';
+        print '<td>'.$langs->trans('HTSCode').'</td>';
+        print '<td>'.$langs->trans('CountryOfOrigin').'</td>';
+        print '<td class="right">'.$langs->trans('Qty').'</td>';
+        print '<td class="right">'.$langs->trans('UnitPrice').'</td>';
+        print '<td class="right">'.$langs->trans('CustomsUnitValue').'</td>';
+        print '<td class="right">'.$langs->trans('TotalHT').'</td>';
+        print '<td class="right">'.$langs->trans('Add').'</td>';
+        print '</tr>';
+
+        print '<tr class="pair nodrag nodrop">';
+        
+        // Description
+        print '<td>';
+        print '<textarea name="product_desc" class="flat" rows="2" cols="30"></textarea>';
+        print '</td>';
+        
+        // SKU
+        print '<td>';
+        print '<input type="text" name="sku" class="flat" size="10">';
+        print '</td>';
+        
+        // HTS Code
+        print '<td>';
+        print '<select name="fk_hts" class="flat">';
+        print '<option value="0">'.$langs->trans('None').'</option>';
+        require_once DOL_DOCUMENT_ROOT.'/custom/internalhts/class/hts.class.php';
+        $hts = new HTS($this->db);
+        $htsList = $hts->fetchAll('', 'country,code', 'ASC', 100);
+        if (!empty($htsList)) {
+            foreach ($htsList as $htsRecord) {
+                print '<option value="'.$htsRecord->id.'">'.$htsRecord->country.' - '.$htsRecord->code.'</option>';
+            }
+        }
+        print '</select>';
+        print '</td>';
+        
+        // Country of Origin
+        print '<td>';
+        print '<input type="text" name="country_of_origin" class="flat" size="3" maxlength="3">';
+        print '</td>';
+        
+        // Quantity
+        print '<td class="right">';
+        print '<input type="text" name="qty" class="flat" size="6" value="1">';
+        print '</td>';
+        
+        // Unit Price
+        print '<td class="right">';
+        print '<input type="text" name="unit_price" class="flat" size="8" value="0">';
+        print '</td>';
+        
+        // Customs Unit Value
+        print '<td class="right">';
+        print '<input type="text" name="customs_unit_value" class="flat" size="8" value="0">';
+        print '</td>';
+        
+        // Total (calculated automatically)
+        print '<td class="right">-</td>';
+        
+        // Add button
+        print '<td class="right">';
+        print '<input type="submit" class="button" name="addline" value="'.$langs->trans('Add').'">';
+        print '</td>';
+        
+        print '</tr>';
+    }
+
+    /**
      * Action executed by scheduler
      * CAN BE A CRON TASK. In such a case, parameters come from the schedule job setup field 'Parameters'
      * Use this function to set up a cron job to execute this action.
